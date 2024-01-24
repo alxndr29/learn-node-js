@@ -1,3 +1,6 @@
+import {
+    response
+} from "express";
 import userService from "../service/user-service.js";
 
 const register = async (request, response, next) => {
@@ -11,6 +14,19 @@ const register = async (request, response, next) => {
     }
 };
 
+const login = async (request, response, next) => {
+    try {
+        const result = await userService.login(request.body);
+        console.log(request.body);
+        response.status(200).json({
+            data: result
+        });
+    } catch (e) {
+        next(e);
+    }
+};
+
 export default {
-    register
+    register,
+    login
 }

@@ -6,6 +6,7 @@ publicRouter.post('/api/users', userController.register);
 publicRouter.post('/api/users/test', (req, res) => {
     res.send(req.body);
 });
-export{
+publicRouter.post('/api/users/login', userController.login);
+export {
     publicRouter
 }
