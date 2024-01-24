@@ -26,6 +26,17 @@ const login = async (request, response, next) => {
     }
 };
 
+const get = async (request, response, next) => {
+    try {
+        const username = "todo";
+        const result = await userService.get(username);
+        response.status.json({
+            data: result
+        });
+    } catch (e) {
+        next(e);
+    }
+};
 export default {
     register,
     login
