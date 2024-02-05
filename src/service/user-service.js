@@ -80,7 +80,8 @@ const get = async (username) => {
             username: username
         },
         select: {
-            username: true
+            username: true,
+            name: true
         }
     });
     if (!user) {

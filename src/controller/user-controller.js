@@ -28,9 +28,9 @@ const login = async (request, response, next) => {
 
 const get = async (request, response, next) => {
     try {
-        const username = "todo";
+        const username = request.user.username;
         const result = await userService.get(username);
-        response.status.json({
+        response.status(200).json({
             data: result
         });
     } catch (e) {
@@ -39,5 +39,6 @@ const get = async (request, response, next) => {
 };
 export default {
     register,
-    login
+    login,
+    get
 }
