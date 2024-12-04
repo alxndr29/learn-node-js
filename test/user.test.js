@@ -147,3 +147,21 @@ describe('PATCH /api/users/current', function () {
         expect(await  bcrypt.compare("rahasiaLagi",user.password)).toBe(true);
     })
 })
+describe('DELETE /api/users/logout', function () {
+    beforeEach(async () => {
+        await createTestUser()
+    })
+    afterEach(async () => {
+        await  removeTestUser()
+    })
+    it('should can logout', async () => {
+        const  result = await supertest(web)
+            .delete('/api/users/logout')
+            .set('Authorization', 'test')
+        expect(result.status).toBe(200);
+        expect(result.body.data).toBe("OK");
+
+        const user = getTestUser()
+        expect(user.token).toBeUndefined();
+    })
+})

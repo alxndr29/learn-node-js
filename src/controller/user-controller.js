@@ -1,4 +1,5 @@
 import {
+    request,
     response
 } from "express";
 import userService from "../service/user-service.js";
@@ -53,9 +54,21 @@ const update = async (request, response, next) => {
         next(e)
     }
 }
+
+const logout = async (request, response, next) => {
+    try{
+        await userService.logout(request.user.username)
+        response.status(200).json({
+            data: "OK"
+        })
+    }catch (e){
+        next(e)
+    }
+}
 export default {
     register,
     login,
     get,
-    update
+    update,
+    logout,
 }
