@@ -4,6 +4,7 @@ import {
 
 const authMiddleware = async (request, response, next) => {
     const token = request.get('Authorization');
+  
     if (!token) {
         response.status(401).json({
             errors: "Unauthorized"
